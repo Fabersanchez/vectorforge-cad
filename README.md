@@ -1,111 +1,338 @@
-# Plataforma Profesional de Conversión PDF Vectorial → DXF
+<div align="center">
 
-Plataforma empresarial de alta precisión para la conversión directa de planos y diseños en formato PDF vectorial (exportados desde AutoCAD, Civil 3D, Revit, SolidWorks e Inventor) a archivos DXF editables.
+# VectorForge CAD
 
----
+### Engineering Precision. Modern Simplicity.
 
-## 🚀 Características Principales
+**Professional PDF Vector → DXF Conversion Platform**
 
-* **Reconstrucción Geométrica Completa**: Extracción directa de entidades `LINE`, `POLYLINE`, `LWPOLYLINE`, `ARC`, `CIRCLE`, `SPLINE`, `ELLIPSE`, `TEXT` y `MTEXT`.
-* **Optimizador Automático de Geometría**:
-  * Eliminación de líneas duplicadas y solapamientos en sentido inverso.
-  * Encadenamiento de segmentos continuos en `LWPOLYLINE`.
-  * Depuración de vértices colineales y ajuste flotante (tolerance snapping).
-* **Soporte Multiversión DXF**: Exportación compatible con DXF R12, R14, 2000, 2004, 2007, 2010, 2013 y 2018.
-* **Interfaz de Usuario Estilo SaaS Moderno**:
-  * Tema oscuro con Glassmorphic Design, efectos HSL y animaciones fluidas con Framer Motion.
-  * Zonas Drag & Drop interactivo con carga individual y por lotes.
-  * Vista previa comparativa en tiempo real: Render de página PDF vs Render de geometría DXF en formato SVG vectorial.
-  * Descarga individual y exportación masiva en archivo ZIP.
-  * Panel de estadísticas y métricas geométricas.
-  * Registro persistente del historial de conversiones.
-* **Docker & Despliegue en Producción**: Orquestación lista para ejecutarse mediante `docker compose up`.
+Convert vector PDF drawings exported from AutoCAD®, Civil 3D®, Revit®, Inventor® and SolidWorks® into editable DXF files with enterprise-grade precision.
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?logo=fastapi)
+![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3-38BDF8?logo=tailwind-css)
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker)
+![DXF](https://img.shields.io/badge/DXF-R12--2018-success)
 
-### Backend
-* **Python 3.11 / 3.12**
-* **FastAPI**: REST API asíncrona de alto rendimiento.
-* **PyMuPDF (`fitz`)**: Extracción matemática de trayectorias vectoriales y renderizado de páginas.
-* **ezdxf**: Generación precisa de archivos DXF con capas y tablas de colores.
-* **Shapely & NumPy**: Operaciones de geometría computacional y simplificación topológica.
-* **Pydantic v2**: Validación estricta de esquemas.
-
-### Frontend
-* **Next.js 14 / React 18 / TypeScript**
-* **Tailwind CSS**: Diseño glassmorphic moderno.
-* **Framer Motion**: Micro-animaciones.
-* **React Dropzone**: Subida interactiva de archivos.
+</div>
 
 ---
 
-## 📂 Estructura del Proyecto
+# Overview
 
-```
-.
+VectorForge CAD is an enterprise-grade web application that converts vector PDF engineering drawings into editable DXF files while preserving geometry, structure and CAD compatibility.
+
+Unlike conventional PDF converters that rely on rasterization, VectorForge CAD extracts vector entities directly from mathematical paths, reconstructing CAD geometry with high precision.
+
+The platform is intended for engineering companies, architects, surveyors, electrical designers, mechanical designers and CAD professionals.
+
+---
+
+# Features
+
+| Feature | Description |
+|----------|-------------|
+| Vector PDF Extraction | Direct extraction of vector entities from CAD-exported PDFs |
+| Geometry Reconstruction | Rebuilds CAD geometry with high precision |
+| Geometry Optimizer | Removes duplicates, merges segments and simplifies geometry |
+| DXF Export | Supports DXF R12, R14, 2000, 2004, 2007, 2010, 2013 and 2018 |
+| SVG Preview | Real-time PDF and DXF comparison |
+| Batch Conversion | Convert multiple files simultaneously |
+| ZIP Export | Download all converted files in a single archive |
+| Conversion History | Persistent conversion history |
+| REST API | High-performance asynchronous FastAPI backend |
+| Docker Ready | One-command deployment |
+
+---
+
+# Supported CAD Entities
+
+VectorForge CAD reconstructs the following entities:
+
+- LINE
+- POLYLINE
+- LWPOLYLINE
+- ARC
+- CIRCLE
+- ELLIPSE
+- SPLINE
+- TEXT
+- MTEXT
+
+---
+
+# Geometry Optimization
+
+The optimization engine performs automatic cleanup before DXF generation.
+
+### Automatic duplicate removal
+
+Removes duplicated and reversed segments.
+
+### Polyline reconstruction
+
+Connects continuous segments into optimized LWPOLYLINE entities.
+
+### Floating point correction
+
+Automatically snaps nearby vertices using configurable tolerances.
+
+### Collinear simplification
+
+Eliminates unnecessary intermediate vertices.
+
+### Geometry validation
+
+Repairs invalid entities before DXF export.
+
+---
+
+# User Interface
+
+Modern SaaS-inspired interface featuring:
+
+- Dark Theme
+- Glassmorphism UI
+- Responsive Dashboard
+- Drag & Drop Upload
+- Batch Upload
+- Real-time Progress
+- Animated Components
+- SVG Preview
+- Download Manager
+- Conversion History
+
+---
+
+# Technology Stack
+
+| Layer | Technology |
+|---------|------------|
+| Backend | FastAPI |
+| Language | Python 3.11 |
+| Frontend | Next.js 14 |
+| UI | React 18 |
+| Styling | Tailwind CSS |
+| Animations | Framer Motion |
+| PDF Engine | PyMuPDF |
+| CAD Engine | ezdxf |
+| Geometry | Shapely |
+| Numerical Computing | NumPy |
+| Validation | Pydantic v2 |
+| Containers | Docker |
+
+---
+
+# Project Structure
+
+```text
+vectorforge-cad/
+
 ├── backend/
-│   ├── api/             # Endpoints y controladores REST
-│   ├── converter/       # Extractor vector PyMuPDF, Optimizador Shapely y DXFWriter
-│   ├── models/          # Modelos de datos geométricos internos
-│   ├── schemas/         # Esquemas Pydantic API
-│   ├── services/        # Servicios de vista previa y almacenamiento
-│   ├── utils/           # Loggers y herramientas de conversión RGB/ACI
-│   ├── uploads/         # Archivos PDF temporales
-│   ├── outputs/         # Archivos DXF generados y ZIPs
-│   ├── config.py        # Configuración centralizada
-│   └── main.py          # Punto de entrada FastAPI
+│   ├── api/
+│   ├── converter/
+│   ├── models/
+│   ├── schemas/
+│   ├── services/
+│   ├── utils/
+│   ├── config.py
+│   └── main.py
+│
 ├── frontend/
 │   ├── src/
-│   │   ├── app/         # Next.js App Router (Dashboard)
-│   │   ├── components/  # Dropzone, ConfigPanel, FileCard, PreviewModal, etc.
-│   │   ├── services/    # Cliente de API Axios
-│   │   └── types/       # Definiciones de TypeScript
-├── tests/               # Pruebas unitarias pytest
-├── docker/              # Dockerfiles de Frontend y Backend
-└── docker-compose.yml   # Orquestador Docker
+│   │   ├── app/
+│   │   ├── components/
+│   │   ├── services/
+│   │   └── types/
+│
+├── docker/
+│
+├── tests/
+│
+├── docker-compose.yml
+│
+└── README.md
 ```
 
 ---
 
-## 🏃 Inicio Rápido
+# System Architecture
 
-### Usando Docker (Recomendado)
+```text
+                   VectorForge CAD
+
+             ┌───────────────────────┐
+             │     Next.js Frontend  │
+             └───────────┬───────────┘
+                         │
+                    REST API
+                         │
+             ┌───────────▼───────────┐
+             │    FastAPI Backend    │
+             └───────────┬───────────┘
+                         │
+      ┌──────────────────┼──────────────────┐
+      │                  │                  │
+      ▼                  ▼                  ▼
+  PyMuPDF         Geometry Engine      DXF Writer
+      │                  │                  │
+      └──────────────────┼──────────────────┘
+                         ▼
+                 Optimized DXF Output
+```
+
+---
+
+# Quick Start
+
+## Clone Repository
+
+```bash
+git clone https://github.com/Fabersanchez/vectorforge-cad.git
+
+cd vectorforge-cad
+```
+
+---
+
+## Docker Deployment
+
 ```bash
 docker compose up --build
 ```
-* **Frontend**: `http://localhost:3000`
-* **API Backend**: `http://localhost:8000`
-* **Documentación Swagger**: `http://localhost:8000/docs`
 
-### Ejecución Local sin Docker
+Frontend
 
-#### 1. Backend FastAPI:
-```bash
-cd backend
-pip install -r requirements.txt
-python -m uvicorn backend.main:app --reload --port 8000
+```
+http://localhost:3000
 ```
 
-#### 2. Frontend Next.js:
+Backend API
+
+```
+http://localhost:8000
+```
+
+Swagger Documentation
+
+```
+http://localhost:8000/docs
+```
+
+---
+
+# Local Installation
+
+## Backend
+
+```bash
+cd backend
+
+pip install -r requirements.txt
+
+uvicorn backend.main:app --reload
+```
+
+---
+
+## Frontend
+
 ```bash
 cd frontend
+
 npm install
+
 npm run dev
 ```
 
 ---
 
-## 🧪 Pruebas Unitarias
+# Running Tests
 
-Para ejecutar la suite completa de pruebas unitarias:
 ```bash
-python -m pytest tests/ -v
+pytest tests -v
 ```
 
 ---
 
-## 📄 Licencia
+# Roadmap
 
-Proyecto Institucional Profesional — Todos los derechos reservados.
+## Version 1.0
+
+- PDF → DXF Conversion
+- Batch Processing
+- SVG Preview
+- Docker Deployment
+
+---
+
+## Version 2.0
+
+- DWG Support
+- AI Geometry Repair
+- OCR Layer Detection
+- Cloud Storage
+
+---
+
+## Version 3.0
+
+- SaaS Platform
+- Team Workspaces
+- Public API
+- AutoCAD Plugin
+- Revit Plugin
+
+---
+
+# Performance Goals
+
+- High-precision vector extraction
+- Fast asynchronous processing
+- Large engineering drawing support
+- Optimized DXF generation
+- Low memory footprint
+
+---
+
+# Future Features
+
+- DWG Export
+- SVG Export
+- AI Geometry Repair
+- Cloud Conversion
+- Conversion API
+- User Authentication
+- Project Management
+- Enterprise Dashboard
+
+---
+
+# Contributing
+
+Contributions are welcome.
+
+Please open an Issue before submitting a Pull Request for major changes.
+
+---
+
+# License
+
+Copyright © 2026 VectorForge CAD.
+
+All Rights Reserved.
+
+---
+
+<div align="center">
+
+### Engineering Precision. Modern Simplicity.
+
+**Built for engineers. Designed for precision.**
+
+</div>
